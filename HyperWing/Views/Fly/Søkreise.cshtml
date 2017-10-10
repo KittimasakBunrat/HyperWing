@@ -1,0 +1,181 @@
+﻿
+@{
+    ViewBag.Title = "Søkreise";
+}
+<!DOCTYPE html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Søkreise</title>
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script type="text/javascript">
+        $(function () {
+          
+            $.ajax({
+                url: '/Fly/hentAlleFraFlyplasser',
+                type: 'GET',
+                dataType: 'json',
+                success: function (fraListe) {
+                    VisDropDown1(fraListe);
+                },
+                error: function (x, y, z) {
+                    alert(x + '\n' + y + '\n' + z);
+                }
+            });
+
+            function VisDropDown1(fraListe) {
+                var utStreng = "";
+                for (var i in fraListe) {
+                    utStreng += "<option value='" + fraListe[i] + "'>" + fraListe[i] + "</option>";
+                }
+                $("#drop1").empty().append(utStreng);
+            }
+
+            // opprett en hendelse på dropdown-listen fraFlyplass når siden lastes
+
+            $("#drop1").click(function () {
+                var valgtFlyplass = $(this).val();
+                $.ajax({
+                    url: '/Fly/hentTilFlyplasser',
+                    type: 'GET',
+                    data: { ByFra: valgtFlyplass },
+                    dataType: 'json',
+                    success: function (tilListe) {
+                        VisDropDown2(tilListe);
+                    },
+                    error: function (x, y, z) {
+                        alert(x + '\n' + y + '\n' + z);
+                    }
+                });
+            });
+
+            function VisDropDown2(tilListe) {
+                var utStreng = "";
+                for (var i in tilListe) {
+                    utStreng += "<option value='" + tilListe[i] + "'>" + tilListe[i] + "</option>";
+                }
+                $("#drop2").empty().append(utStreng);
+            }
+
+            $("#drop2").click(function () {
+                var fraFlyplass = $("#drop1").val();
+                var tilFlyplass = $("#drop2").val();
+                $.ajax({
+                    url: '/Fly/hentStrekning',
+                    type: 'GET',
+                    data: {
+                        ByFra: fraFlyplass,
+                        ByTil: tilFlyplass
+                    },
+                    dataType: 'json',
+                    success: function (strekninger) {
+                        VisStrekninger(strekninger);
+                    },
+                    error: function (x, y, z) {
+                        alert(x + '\n' + y + '\n' + z);
+                    }
+                });
+            });
+
+
+
+            /*
+            <a href="/Fly/BestillReise/Id">Bestill Reise</a>
+            */
+
+            function date(param) {
+                var date = new Date(parseInt(param.substr(6)));
+
+                var s = date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear() + " - " + date.toLocaleTimeString();
+                return s;
+            }
+
+            function reiseappender(param) {
+                var array = param.split(/[a-z]+/);
+                var tid = parseInt(array[0]) + parseInt(array[2]);
+                var min = parseInt(array[1]) + parseInt(array[3]);
+                if (min > 60) {
+                    min = min - 60;
+                    tid = tid + 1;
+                }
+                var reisetid = tid + "t " + min + "m";
+                return reisetid;
+            }
+
+          
+
+          
+
+            function VisStrekninger(strekninger) {
+                var utStreng = "";
+                if (strekninger[0].hasOwnProperty('Mellomlanding')) {
+                    utStreng += "<table class='table'><tr><th>Flyplass</th><th>Fra</th><th>Mellomlanding</th><th>Til</th><th>Pris(NOK)</th><th>Reisetid</th><th>Avgangstid</th><th>Ankomstid</th></tr>";
+                    for (var i in strekninger) {
+                        console.log(strekninger[i]);
+                        utStreng += "<tr><td>" + strekninger[i].Flyplass + "</td><td>" + strekninger[i].ByFra + "</td><td>" + strekninger[i].Mellomlanding + "</td><td>" + strekninger[i].ByTil + "</td><td>" + strekninger[i].Pris + "</td><td>" + reiseappender(strekninger[i].Reisetid) + "</td><td>" + date(strekninger[i].Avgangstid) + "</td><td>" + date(strekninger[i].Ankomstid) + "</td><td>" + "<a href=\"/Fly/BestillReiseMellom/" + strekninger[i].RId1 + "?Id2=" + strekninger[i].RId2 + "\">Bestill Reise</a>" + "<tr/>"; //<a href="/Fly/BestillReise/  Id">Bestill Reise</a>
+                    }
+                }
+                else {
+                    utStreng += "<table class='table'><tr><th>Flyplass</th><th>Fra</th><th>Til</th><th>Pris</th><th>Reisetid</th><th>Avgangstid</th><th>Ankomstid</th></tr>";
+                    for (var i in strekninger) {
+                        console.log(strekninger[i]);
+                        utStreng += "<tr><td>" + strekninger[i].Flyplass + "</td><td>" + strekninger[i].ByFra + "</td><td>" + strekninger[i].ByTil + "</td><td>" + strekninger[i].Pris + "</td><td>" + strekninger[i].Reisetid + "</td><td>" + date(strekninger[i].Avgangstid) + "</td><td>" + date(strekninger[i].Ankomstid) + "</td><td>" + "<a href=\"/Fly/BestillReiseDirekte/" + strekninger[i].RId + "\">Bestill Reise</a>" + "<tr/>";
+                    }
+                }
+                utStreng += "</table>"
+                $("#strekninger").empty().append(utStreng);
+            } 
+        });
+    </script> 
+</head>
+
+<body style="background-image:url(/Images/airplane3.png)">
+        <section class="container-fluid" style="text-align:center; background-color:darkblue;width:80em;border-radius:3px">
+            <h1 style="color:whitesmoke;font-size:50px;font-family:Verdana">
+                HyperWing
+            </h1>
+            <p style="color:whitesmoke;font-size:16px;font-family:Verdana">Finn din drømmereise!</p>
+        </section>
+
+   <!-- <section class="container-fluid"style="background-color:rgba(255,255,255,0.2);height:10em;width:80em">
+       
+    </section> -->
+        <section class="container-fluid" style="background-color:royalblue;border-radius:3px; width:80em">
+            <section style="margin-top:1em;margin-left:15em">
+                <p style="color:whitesmoke;font-size:16px;font-family:Verdana;">Søk</p>
+            </section>
+            <form action="/Fly/Søkreise" method="post" style="margin-left:15em;color:whitesmoke;font-family:Verdana">
+
+                <div class="container">
+                    <div class="row" style="align-content:center">
+                        <div id="dropDown1" class="col col-sm-2">
+                            Velg fra by:<br />
+                            <select id="drop1" class="btn btn-primary dropdown-toggle" style="background-color:whitesmoke;color:black"></select>
+                        </div>
+                        <div id="dropDown2" class="col">
+                            Velg til by:<br />
+                            <select id="drop2" class="btn btn-primary dropdown-toggle" style="background-color:whitesmoke;color:black"></select>
+                            <br />
+                            <br />
+                        </div> 
+                    </div>
+                </div> 
+
+            </form>
+        </section>
+
+</body>
+<section class="container-fluid" style="background-color:rgba(255,255,255,0.95);height:auto;width:80em">
+
+    <div class="row">
+
+    </div>
+   
+    <div id="strekninger">
+    </div>
+
+    
+</section>
+
+<footer class="container-fluid" style="background-color:aliceblue;width:80em;border-radius:3px">
+
+</footer>

@@ -1,0 +1,50 @@
+﻿@model HyperWing.Models.Billett
+
+@{
+    ViewBag.Title = "Vis Bestilling";
+}
+
+<section class="container-fluid" style="text-align:center; background-color:darkblue;width:80em;border-radius:3px">
+    <h1 style="color:whitesmoke;font-size:50px;font-family:Verdana">
+        HyperWing
+    </h1>
+    <p style="color:whitesmoke;font-size:16px;font-family:Verdana">Finn din drømmereise!</p>
+</section>
+
+<body style="background-image:url(/Images/airplane3.png)">
+    <div class="container-fluid" style="background-color:rgba(255,255,255,0.2);width:80em; border-radius:3px;">
+        <br />
+        <div class="container-fluid" style="background-color:rgba(255,255,255,0.9);width:20em; text-align:center; border-radius:30px;">
+            <h2>Din Bestilling</h2>
+
+            <p>
+                <hr />
+                Person Nummer: @Model.PersonNr<br />
+                Navn: @Model.Navn<br />
+                Epost: @Model.Epost<br />
+                Telefon: @Model.Telefon<br />
+                <hr />
+
+                Fra Flyplass: @Model.Flyplass<br />
+                Fra By: @Model.ByFra<br />
+                @if (Model.Mellomlanding != null)
+                {
+                    @Model.Mellomlanding<br />
+                }
+                Til By: @Model.ByTil<br />
+                Avgang: @Model.Avgang<br />
+                Ankomst: @Model.Ankomst<br />
+                Pris: @Model.Pris<br />
+               
+
+            </p>
+        </div>
+        <br />
+    </div>
+</body>
+
+<footer class="container-fluid" style="background-color:aliceblue;width:80em;border-radius:3px">
+   
+</footer>
+
+

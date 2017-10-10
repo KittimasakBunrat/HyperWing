@@ -1,0 +1,74 @@
+﻿@model HyperWing.Models.Kunde
+
+@{
+    ViewBag.Title = "Registrering";
+}
+
+<section class="container-fluid" style="text-align:center; background-color:darkblue;width:80em;border-radius:3px">
+    <h1 style="color:whitesmoke;font-size:50px;font-family:Verdana">
+        HyperWing
+    </h1>
+    <p style="color:whitesmoke;font-size:16px;font-family:Verdana">Finn din drømmereise!</p>
+</section>
+
+<body style="background-image:url(/Images/airplane3.png)">
+    <div class="container-fluid" style="background-color:rgba(255,255,255,0.2);width:80em">
+        <br />
+        <div class="container-fluid" style="background-color:rgba(255,255,255,0.9); width:29em; border-radius:3px;">
+
+            <h2>Registering</h2>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.personNr, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.personNr, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.personNr, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.navn, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.navn, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.navn, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.epost, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.epost, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.epost, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.telefon, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.telefon, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.telefon, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Create" class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <br />
+    </div>
+</body>
+
+<footer class="container-fluid" style="background-color:aliceblue;width:80em;border-radius:3px">
+  
+</footer>
