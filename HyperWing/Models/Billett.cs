@@ -8,7 +8,6 @@ namespace HyperWing.Models
 {
     public class Billett
     {
-        //billettene skal ikke lagres i database
         [Key]
         public int Id { get; set; }
         public int PersonNr { get; set; }
