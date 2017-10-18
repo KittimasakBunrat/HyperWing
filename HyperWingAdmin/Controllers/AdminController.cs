@@ -1,0 +1,73 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using System.Security.Cryptography;
+using System.Text;
+using HyperWing.BLL;
+using HyperWing.Model;
+
+namespace HyperWingAdmin.Controllers
+{
+    public class AdminController : Controller
+    {
+        public ActionResult Login()
+        {
+            if(Session["LoggetInn"] == null)
+            {
+                Session["LoggetInn"] = false;
+                ViewBag.Innlogget = false; 
+            }
+            else
+            {
+                ViewBag.Innlogget = (bool)Session["LoggetInn"]; 
+            }
+
+            return View(); 
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Login(Admin innLoggetAdmin)
+        {
+            if (AdminLogikk.adminDB(innLoggetAdmin))
+            {
+                Session["LoggetInn"] = true;
+                ViewBag.Innlogget = true;
+                return View(); 
+            }
+            else
+            {
+                Session["LoggetInn"] = false;
+                ViewBag.Innlogget = false;
+                return View(); 
+            }
+        }
+       
+   
+
+        public ActionResult Innlogget()
+        {
+            if(Session["LoggetInn"] != null)
+            {
+                bool loggetInn = (bool)Session["LoggetInn"];
+                if (loggetInn)
+                {
+                    return View(); 
+                }
+            }
+
+            return RedirectToAction("Login");
+        }
+
+        public ActionResult LoggUt()
+        {
+            Session["LoggetInn"] = false;
+            return RedirectToAction("Login");
+        }
+
+      
+        
+    }
+}
