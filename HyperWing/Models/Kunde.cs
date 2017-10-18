@@ -8,11 +8,12 @@ namespace HyperWing.Models
 {
     public class Kunde
     {
-        public int Id;
+        [Key]
+        public int Id { get; set; }
 
         [Display(Name ="Person Nummer")]
         [Required(ErrorMessage ="Oppgi Person nummer")]
-        public int personNr { get; set; }
+        public String personNr { get; set; }
 
         [Display(Name ="Navn")]
         [Required(ErrorMessage ="Oppgi Navn")]

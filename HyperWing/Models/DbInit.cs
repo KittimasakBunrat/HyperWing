@@ -6,7 +6,7 @@ using System.Data.Entity;
 
 namespace HyperWing.Models
 {
-    public class DbInit : DropCreateDatabaseAlways<FlyContext>
+    public class DbInit : CreateDatabaseIfNotExists<FlyContext>
     {
         protected override void Seed(FlyContext context)
         {
@@ -24,7 +24,7 @@ namespace HyperWing.Models
 
             OSL.Reiser = values.osloReise();
             BKK.Reiser = values.bangkokkReise();
-            ARN.Reiser = values.stockholmReise();
+            ARN.Reiser = values.stockholmReise();   
             HEL.Reiser = values.helsinkiReise();
             AMS.Reiser = values.amsterdamReise();
             LHR.Reiser = values.londonReise();

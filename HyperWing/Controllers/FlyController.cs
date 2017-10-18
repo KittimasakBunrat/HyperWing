@@ -130,13 +130,32 @@ namespace HyperWing.Controllers
         [HttpPost]
         public ActionResult BestillReiseMellom(Kunde kunde)
         {
-            Session["registrertKunde"] = kunde;
+            using (var db = new FlyContext()) {
+                try {
+                    db.Kunder.Add(kunde);
+                    db.SaveChanges();
+                }
+                catch {
+                }
+            }
+                Session["registrertKunde"] = kunde;
             return RedirectToAction("VisBestilling"); 
         }
 
         [HttpPost]
         public ActionResult BestillReiseDirekte(Kunde kunde)
         {
+            using (var db = new FlyContext())
+            {
+                try
+                {
+                    db.Kunder.Add(kunde);
+                    db.SaveChanges();
+                }
+                catch
+                {
+                }
+            }
             Session["registrertKunde"] = kunde;
             return RedirectToAction("VisBestilling");
         }
@@ -190,7 +209,17 @@ namespace HyperWing.Controllers
                     Pris = reise1.Pris + reise2.Pris,
                 };
             }
-           
+            using (var db = new FlyContext())
+            {
+                try
+                {
+                    db.Billetter.Add(billett);
+                    db.SaveChanges();
+                }
+                catch
+                {
+                }
+            }
             return View(billett); 
         }
 
