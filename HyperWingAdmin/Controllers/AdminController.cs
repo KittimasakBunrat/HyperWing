@@ -35,7 +35,7 @@ namespace HyperWingAdmin.Controllers
             {
                 Session["LoggetInn"] = true;
                 ViewBag.Innlogget = true;
-                return View(); 
+                return RedirectToAction("AdminSide"); 
             }
             else
             {
@@ -44,14 +44,13 @@ namespace HyperWingAdmin.Controllers
                 return View(); 
             }
         }
-       
-   
 
-        public ActionResult Innlogget()
+        public ActionResult AdminSide()
         {
             if(Session["LoggetInn"] != null)
             {
                 bool loggetInn = (bool)Session["LoggetInn"];
+                ViewBag.Innlogget = true; 
                 if (loggetInn)
                 {
                     return View(); 
@@ -66,8 +65,5 @@ namespace HyperWingAdmin.Controllers
             Session["LoggetInn"] = false;
             return RedirectToAction("Login");
         }
-
-      
-        
     }
 }
