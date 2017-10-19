@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using HyperWing.Model;
-using HyperWing.BLL;
+using HyperWing.Models;
+using HyperWing.Controllers;
 using System.Web.Script.Serialization;
 using System.Diagnostics;
 
@@ -14,52 +14,115 @@ namespace HyperWing.Controllers
     {
         public ActionResult Søkreise()
         {
-            return View();
+            return View(); 
         }
-        /*
+
         public string hentAlleFraFlyplasser()
         {
+            using (var db = new FlyContext()) 
+            {
+                List<Reiser> alleFly = db.Reiser.ToList();
 
-            var jsonSerializer = new JavaScriptSerializer();
-            return jsonSerializer.Serialize(AdminBLL.hentAlleFraFlyplasser());
+                var alleFraFly = new List<string>();
 
+                foreach (Reiser f in alleFly)
+                {
+                    string funnetStrekning = alleFraFly.FirstOrDefault(fl => fl.Contains(f.ByFra));
+                    if (funnetStrekning == null)
+                    {
+ 
+                        alleFraFly.Add(f.ByFra);
+                    }
+                }
+                var jsonSerializer = new JavaScriptSerializer();
+                return jsonSerializer.Serialize(alleFraFly);
+            }
         }
 
         public string hentTilFlyplasser(string ByFra)
         {
-            var jsonSerializer = new JavaScriptSerializer();
-            return jsonSerializer.Serialize(AdminBLL.hentTilFlyplasser(ByFra));
+            using (var db = new FlyContext())
+            {
+                List<Reiser> alleFly = db.Reiser.ToList();
 
+                var alleTilFly = new List<string>();
+
+                foreach (Reiser f in alleFly)
+                {
+                    if (f.ByFra != ByFra)
+                    {
+                        string funnetStrekning = alleTilFly.FirstOrDefault(fl => fl.Contains(f.ByFra));
+                        if (funnetStrekning == null)
+                        {
+
+                            alleTilFly.Add(f.ByFra);
+                        }
+                    }
+                }
+                var jsonSerializer = new JavaScriptSerializer();
+                return jsonSerializer.Serialize(alleTilFly);
+            }
         }
 
-
+      
 
         public string hentStrekning(string ByFra, string ByTil)
         {
-
-            if (AdminBLL.hentTilgjengeligRute(ByFra, ByTil).Count == 0)
+            using (var db = new FlyContext())
             {
-                var jsonSerial = new JavaScriptSerializer();
-                return jsonSerial.Serialize(AdminBLL.hentMellomlanding(ByFra, ByTil));
+
+                List<Reiser> tilgjengeligRute = db.Reiser.Where(f => f.ByTil == ByTil && f.ByFra == ByFra).ToList();
+
+                if (tilgjengeligRute.Count == 0)
+                {
+                    var mellomlandinger = (from ra in db.Reiser
+                                           from rb in db.Reiser
+                                           where ra.ByTil == rb.ByFra && ra.ByFra == ByFra && rb.ByTil == ByTil
+                                           let pris = ra.Pris + rb.Pris
+                                           
+                                           select new
+                                           {
+                                               Ankomstid = rb.Ankomstid,
+                                               Avgangstid = ra.Avgangstid,
+                                               ByFra = ra.ByFra,
+                                               Mellomlanding = rb.ByFra,
+                                               ByTil = rb.ByTil,
+                                               Flyplass = ra.Flyplass,
+                                               Pris = pris,
+                                               RId1 = ra.RId,
+                                               RId2 = rb.RId,
+                                               Reisetid = ra.Reisetid + rb.Reisetid
+                                           }).ToList();
+                    var jsonSerial = new JavaScriptSerializer();
+                    return jsonSerial.Serialize(mellomlandinger);
+                }
+          
+                var jsonSerializer = new JavaScriptSerializer();
+                return jsonSerializer.Serialize(tilgjengeligRute);
             }
-
-            var jsonSerializer = new JavaScriptSerializer();
-            return jsonSerializer.Serialize(AdminBLL.hentTilgjengeligRute(ByFra, ByTil));
-
         }
+
+       
+
 
         public ActionResult BestillReiseMellom(int id, int Id2)
         {
+            var db = new DB();
 
-            Session["valgtReise"] = InfoCollector.hentValgtReise(id, Id2);
+            List<Reiser> valgtReise = db.valgtReise(id, Id2);
 
-            return View();
+            Session["valgtReise"] = valgtReise; 
+
+            return View(); 
         }
 
         public ActionResult BestillReiseDirekte(int id)
         {
+            var db = new DB();
 
-            Session["valgtReise"] = InfoCollector.hentValgtReise(id);
+            List<Reiser> valgtReise = db.valgtReise(id);
+
+            Session["valgtReise"] = valgtReise;
 
             return View();
         }
@@ -67,14 +130,33 @@ namespace HyperWing.Controllers
         [HttpPost]
         public ActionResult BestillReiseMellom(Kunde kunde)
         {
-            Session["registrertKunde"] = InfoCollector.leggTilKunde(kunde);
-            return RedirectToAction("VisBestilling");
+            using (var db = new FlyContext()) {
+                try {
+                    db.Kunder.Add(kunde);
+                    db.SaveChanges();
+                }
+                catch {
+                }
+            }
+                Session["registrertKunde"] = kunde;
+            return RedirectToAction("VisBestilling"); 
         }
 
         [HttpPost]
         public ActionResult BestillReiseDirekte(Kunde kunde)
         {
-            Session["registrertKunde"] = InfoCollector.leggTilKunde(kunde);
+            using (var db = new FlyContext())
+            {
+                try
+                {
+                    db.Kunder.Add(kunde);
+                    db.SaveChanges();
+                }
+                catch
+                {
+                }
+            }
+            Session["registrertKunde"] = kunde;
             return RedirectToAction("VisBestilling");
         }
 
@@ -83,17 +165,68 @@ namespace HyperWing.Controllers
 
             Kunde kunde = (Kunde)Session["registrertKunde"];
             List<Reiser> reiser = (List<Reiser>)Session["valgtReise"];
-            return View(AdminBLL.visBestilling(kunde, reiser));
 
+            Reiser reise1;
+            Reiser reise2;
+
+            var billett = new Billett(); 
+
+            if (reiser.Count == 1)
+            {
+                reise1 = reiser[0];
+
+                billett = new Billett()
+                {
+                    PersonNr = kunde.personNr,
+                    Navn = kunde.navn,
+                    ByFra = reise1.ByFra,
+                    ByTil = reise1.ByTil,
+                    Epost = kunde.epost,
+                    Telefon = kunde.telefon,
+                    Avgang = reise1.Avgangstid,
+                    Ankomst = reise1.Ankomstid,
+                    Flyplass = reise1.Flyplass,
+                    Pris = reise1.Pris,
+                };
+            }
+            else
+            {
+                reise1 = reiser[0];
+                reise2 = reiser[1];
+
+                billett = new Billett()
+                {
+                    PersonNr = kunde.personNr,
+                    Navn = kunde.navn,
+                    ByFra = reise1.ByFra,
+                    Mellomlanding = "Mellomlanding i: " + reise2.ByFra,
+                    ByTil = reise2.ByTil,
+                    Epost = kunde.epost,
+                    Telefon = kunde.telefon,
+                    Avgang = reise2.Avgangstid,
+                    Ankomst = reise1.Ankomstid,
+                    Flyplass = reise1.Flyplass,
+                    Pris = reise1.Pris + reise2.Pris,
+                };
+            }
+            using (var db = new FlyContext())
+            {
+                try
+                {
+                    db.Billetter.Add(billett);
+                    db.SaveChanges();
+                }
+                catch
+                {
+                }
+            }
+            return View(billett); 
         }
 
-        public ActionResult ListeKunde() {
-            return View(AdminBLL.hentAlleKunder());
-        }
-        */
         public ActionResult Admin()
         {
-            return Redirect("/Admin/Login");
+
+            return Redirect("http://localhost:64693/Admin/Login");
         }
     }
 }
