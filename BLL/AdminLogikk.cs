@@ -10,7 +10,6 @@ namespace HyperWing.BLL
 {
     public class AdminLogikk
     {
-
         public static bool adminDB(Admin admin)
         {
             var db = new DB();
