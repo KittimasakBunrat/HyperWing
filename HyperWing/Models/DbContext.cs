@@ -37,12 +37,14 @@ namespace HyperWing.Models
     {
         public FlyContext() : base("name=HyperWing")
         {
-            Database.CreateIfNotExists();
             Database.SetInitializer(new DbInit());
+            Database.Initialize(true);
         }
 
         public DbSet<Flyplasser> Flyplasser { get; set; }
         public DbSet<Reiser> Reiser { get; set; }
+        public DbSet<Kunde> Kunder { get; set; }
+        public DbSet<Billett> Billetter { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
