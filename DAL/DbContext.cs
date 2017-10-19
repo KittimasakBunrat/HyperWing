@@ -40,13 +40,16 @@ namespace HyperWing.DAL
 
             base.Seed(context);
         }
+
+
     }
 
     public class AdminContext : DbContext
     {
         public AdminContext() : base("name=Admin")
         {
-            Database.CreateIfNotExists();
+            Database.SetInitializer(new Dbinit());
+            Database.Initialize(true);
         }
 
         public DbSet<dbAdmin> Administratorer { get; set; }
