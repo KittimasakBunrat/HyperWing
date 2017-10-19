@@ -223,5 +223,10 @@ namespace HyperWing.Controllers
             return View(billett); 
         }
 
+        public ActionResult Admin()
+        {
+
+            return Redirect("http://localhost:64693/Admin/Login");
+        }
     }
 }
