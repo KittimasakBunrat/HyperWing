@@ -3,28 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data.Entity;
-using HyperWing.Model;
 
 namespace HyperWing.DAL
 {
-    public class DbInit : CreateDatabaseIfNotExists<AdminContext>
+    public class DbInit : CreateDatabaseIfNotExists<FlyContext>
     {
-        protected override void Seed(AdminContext context)
+        protected override void Seed(FlyContext context)
         {
-            var db = new DB();
-            String passord = "root";
-            String salt = db.lagSalt();
-            var passordOgSalt = passord + salt;
-            byte[] passordDB = db.lagHash(passordOgSalt);
-
-            var admin1 = new dbAdmin()
-            {
-                Navn = "root",
-                Salt = salt,
-                Passord = passordDB
-            };
-
-            context.Administratorer.Add(admin1);
 
             var OSL = new Flyplasser() { Navn = "OSL - Oslo Lufthavn" };
             var BKK = new Flyplasser() { Navn = "BKK - Suvarnabhumi Airport" };
@@ -35,11 +20,24 @@ namespace HyperWing.DAL
             var HKG = new Flyplasser() { Navn = "HKG - Hong Kong Airport" };
             var JFK = new Flyplasser() { Navn = "JFK - John F Kennedy Airport" };
 
+            var db = new DB();
+            String passord = "root";
+            String salt = db.lagSalt();
+            var passordOgSalt = passord + salt;
+            byte[] passordDB = db.lagHash(passordOgSalt);
+            var admin = new dbAdmin()
+            {
+                Navn = "root",
+                Salt = salt,
+                Passord = passordDB
+            };
+
+
             SeedValues values = new SeedValues();
 
             OSL.Reiser = values.osloReise();
             BKK.Reiser = values.bangkokkReise();
-            ARN.Reiser = values.stockholmReise();   
+            ARN.Reiser = values.stockholmReise();
             HEL.Reiser = values.helsinkiReise();
             AMS.Reiser = values.amsterdamReise();
             LHR.Reiser = values.londonReise();
@@ -63,7 +61,7 @@ namespace HyperWing.DAL
             context.Flyplasser.Add(LHR);
             context.Flyplasser.Add(HKG);
             context.Flyplasser.Add(JFK);
-         
+            context.Administratorer.Add(admin);
 
             base.Seed(context);
         }

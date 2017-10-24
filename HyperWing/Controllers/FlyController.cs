@@ -7,7 +7,6 @@ using HyperWing.Model;
 using HyperWing.BLL;
 using System.Web.Script.Serialization;
 using System.Diagnostics;
-using Model;
 
 namespace HyperWing.Controllers
 {
@@ -23,14 +22,14 @@ namespace HyperWing.Controllers
 
             var jsonSerializer = new JavaScriptSerializer();
             return jsonSerializer.Serialize(InfoCollector.hentAlleFraFlyplasser());
-            
+
         }
 
         public string hentTilFlyplasser(string ByFra)
         {
             var jsonSerializer = new JavaScriptSerializer();
             return jsonSerializer.Serialize(InfoCollector.hentTilFlyplasser(ByFra));
-          
+
         }
 
 
@@ -38,7 +37,7 @@ namespace HyperWing.Controllers
         public string hentStrekning(string ByFra, string ByTil)
         {
 
-            if(InfoCollector.hentTilgjengeligRute(ByFra, ByTil).Count == 0)
+            if (InfoCollector.hentTilgjengeligRute(ByFra, ByTil).Count == 0)
             {
                 var jsonSerial = new JavaScriptSerializer();
                 return jsonSerial.Serialize(InfoCollector.hentMellomlanding(ByFra, ByTil));
@@ -59,7 +58,7 @@ namespace HyperWing.Controllers
 
         public ActionResult BestillReiseDirekte(int id)
         {
-           
+
             Session["valgtReise"] = InfoCollector.hentValgtReise(id);
 
             return View();
@@ -81,11 +80,11 @@ namespace HyperWing.Controllers
 
         public ActionResult VisBestilling()
         {
-            
-            Kunde kunde = (Kunde)Session["registrertKunde"];
 
-            return InfoCollector.visBestilling(kunde, reiser);
-            
+            Kunde kunde = (Kunde)Session["registrertKunde"];
+            List<Reiser> reiser = (List<Reiser>)Session["valgtReise"];
+            return View(InfoCollector.visBestilling(kunde, reiser));
+
         }
 
         public ActionResult Admin()

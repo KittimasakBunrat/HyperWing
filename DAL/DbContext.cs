@@ -27,6 +27,7 @@ namespace HyperWing.DAL
         public virtual List<Reiser> Reiser { get; set; }
     }
 
+    /*
     public class Reiser
     {
         [Key]
@@ -42,6 +43,7 @@ namespace HyperWing.DAL
         public int FId { get; set; }
 
     }
+    */
 
     public class FlyContext : DbContext
     {
@@ -54,7 +56,7 @@ namespace HyperWing.DAL
         public DbSet<dbAdmin> Administratorer { get; set; }
         public DbSet<Flyplasser> Flyplasser { get; set; }
         public DbSet<Reiser> Reiser { get; set; }
-        
+
         //lag entiter, fjern import
         public DbSet<Kunde> Kunder { get; set; }
         //lag entiter, fjern import 
