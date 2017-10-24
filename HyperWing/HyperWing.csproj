@@ -127,13 +127,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Billett.cs" />
-    <Compile Include="Models\DB.cs" />
-    <Compile Include="Models\DbContext.cs" />
-    <Compile Include="Models\DbInit.cs" />
-    <Compile Include="Models\FlyReise.cs" />
-    <Compile Include="Models\Kunde.cs" />
-    <Compile Include="Models\SeedValues.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -155,6 +148,17 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BLL\BLL.csproj">
+      <Project>{8107b6cf-8870-4d91-b7a2-726e13545aab}</Project>
+      <Name>BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{a1ac8617-1b0e-4322-84b3-41f514ef8304}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
