@@ -30,14 +30,14 @@ namespace HyperWing.DAL
                 Navn = "root",
                 Salt = salt,
                 Passord = passordDB
-            }; 
+            };
 
 
             SeedValues values = new SeedValues();
 
             OSL.Reiser = values.osloReise();
             BKK.Reiser = values.bangkokkReise();
-            ARN.Reiser = values.stockholmReise();   
+            ARN.Reiser = values.stockholmReise();
             HEL.Reiser = values.helsinkiReise();
             AMS.Reiser = values.amsterdamReise();
             LHR.Reiser = values.londonReise();
@@ -61,7 +61,7 @@ namespace HyperWing.DAL
             context.Flyplasser.Add(LHR);
             context.Flyplasser.Add(HKG);
             context.Flyplasser.Add(JFK);
-            context.Administratorer.Add(admin); 
+            context.Administratorer.Add(admin);
 
             base.Seed(context);
         }

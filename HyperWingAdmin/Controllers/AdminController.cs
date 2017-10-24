@@ -14,17 +14,17 @@ namespace HyperWingAdmin.Controllers
     {
         public ActionResult Login()
         {
-            if(Session["LoggetInn"] == null)
+            if (Session["LoggetInn"] == null)
             {
                 Session["LoggetInn"] = false;
-                ViewBag.Innlogget = false; 
+                ViewBag.Innlogget = false;
             }
             else
             {
-                ViewBag.Innlogget = (bool)Session["LoggetInn"]; 
+                ViewBag.Innlogget = (bool)Session["LoggetInn"];
             }
 
-            return View(); 
+            return View();
         }
 
         [HttpPost]
@@ -35,25 +35,25 @@ namespace HyperWingAdmin.Controllers
             {
                 Session["LoggetInn"] = true;
                 ViewBag.Innlogget = true;
-                return RedirectToAction("AdminSide"); 
+                return RedirectToAction("AdminSide");
             }
             else
             {
                 Session["LoggetInn"] = false;
                 ViewBag.Innlogget = false;
-                return View(); 
+                return View();
             }
         }
 
         public ActionResult AdminSide()
         {
-            if(Session["LoggetInn"] != null)
+            if (Session["LoggetInn"] != null)
             {
                 bool loggetInn = (bool)Session["LoggetInn"];
-                ViewBag.Innlogget = true; 
+                ViewBag.Innlogget = true;
                 if (loggetInn)
                 {
-                    return View(); 
+                    return View();
                 }
             }
 
@@ -61,10 +61,25 @@ namespace HyperWingAdmin.Controllers
         }
 
 
+        public ActionResult VisAdminBestilling()
+        {
+
+            return View();
+
+        }
+
+
         public ActionResult LoggUt()
         {
             Session["LoggetInn"] = false;
             return RedirectToAction("Login");
+        }
+
+        [ActionName("KundeListe")]
+        [HttpGet]
+        public ActionResult KundeListe()
+        {
+            return View(InfoCollector.hentKunder());
         }
     }
 }
