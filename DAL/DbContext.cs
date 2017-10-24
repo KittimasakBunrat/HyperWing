@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data.Entity;
 using System.ComponentModel.DataAnnotations;
 using System.Data.Entity.ModelConfiguration.Conventions;
+using HyperWing.Model;
 
 namespace HyperWing.DAL
 {
@@ -18,41 +19,46 @@ namespace HyperWing.DAL
         public String Salt { get; set; }
     }
 
-    public class Dbinit : DropCreateDatabaseAlways<AdminContext>
+    public class Flyplasser
     {
-        protected override void Seed(AdminContext context)
-        {
-            var db = new DB();
+        [Key]
+        public int FId { get; set; }
+        public String Navn { get; set; }
+        public virtual List<Reiser> Reiser { get; set; }
+    }
 
-            String passord = "root"; 
-            String salt = db.lagSalt();
-            var passordOgSalt = passord + salt;
-            byte[] passordDB = db.lagHash(passordOgSalt);
-
-            var admin1 = new dbAdmin()
-            {
-                Navn = "root",
-                Salt = salt,
-                Passord = passordDB
-            };
-
-            context.Administratorer.Add(admin1);
-
-            base.Seed(context);
-        }
-
+    public class Reiser
+    {
+        [Key]
+        public int RId { get; set; }
+        public String ByFra { get; set; }
+        public String ByTil { get; set; }
+        public String Flyplass { get; set; }
+        public DateTime Avgangstid { get; set; }
+        public DateTime Ankomstid { get; set; }
+        public String Reisetid { get; set; }
+        public double Pris { get; set; }
+        public String Informasjon { get; set; }
+        public int FId { get; set; }
 
     }
 
-    public class AdminContext : DbContext
+    public class FlyContext : DbContext
     {
-        public AdminContext() : base("name=Admin")
+        public FlyContext() : base("name=HyperWing")
         {
-            Database.SetInitializer(new Dbinit());
+            Database.SetInitializer(new DbInit());
             Database.Initialize(true);
         }
 
         public DbSet<dbAdmin> Administratorer { get; set; }
+        public DbSet<Flyplasser> Flyplasser { get; set; }
+        public DbSet<Reiser> Reiser { get; set; }
+        
+        //lag entiter, fjern import
+        public DbSet<Kunde> Kunder { get; set; }
+        //lag entiter, fjern import 
+        public DbSet<Billett> Billetter { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
