@@ -201,15 +201,10 @@ namespace HyperWing.DAL
 
             using (var db = new FlyContext())
             {
-                try
-                {
+
                     db.Kunder.Add(nyKunde);
                     db.SaveChanges();
-                }
-                catch (Exception ex)
-                {
-                    Console.Write("Feil ved innsetting av kunde");
-                }
+ 
             }
 
             return nyKunde;
