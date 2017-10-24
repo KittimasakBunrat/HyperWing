@@ -37,44 +37,39 @@ namespace HyperWing.BLL
         public static dynamic hentMellomlanding(String ByFra, String ByTil)
         {
             var db = new DB();
-            return db.hentMellomlanding(ByFra, ByTil); 
+            return db.hentMellomlanding(ByFra, ByTil);
         }
 
         public static dynamic hentValgtReise(int id, int Id2)
         {
             var db = new DB();
-            return db.valgtReise(id, Id2); 
+            return db.valgtReise(id, Id2);
         }
 
         public static dynamic hentValgtReise(int id)
         {
             var db = new DB();
-            return db.valgtReise(id); 
+            return db.valgtReise(id);
         }
 
         public static Kunde leggTilKunde(Kunde kunde)
         {
             var db = new DB();
-            return db.leggTilKunde(kunde); 
+            return db.leggTilKunde(kunde);
         }
 
-        public static Billett visBestilling(Kunde kunde, List<Reiser> reiser)
+        public static Billett visBestilling(Kunde kunde, List<HyperWing.Model.Reiser> reiser)
         {
             var db = new DB();
-            return db.visBestilling(kunde, reiser); 
+            return db.visBestilling(kunde, reiser);
         }
 
-
-        //UBRUKELIG
-        public static List<Reiser> listReiser() {
+        public static List<Kunde> hentKunder()
+        {
             var db = new DB();
-            return db.listReiser(); 
+            return db.hentKunder();
         }
 
-        public static Reiser ret() {
-            var db = new DB();
-            return db.hentReise();
-        }
 
     }
 
