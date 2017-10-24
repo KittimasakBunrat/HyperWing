@@ -31,7 +31,7 @@ namespace HyperWingAdmin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(Admin innLoggetAdmin)
         {
-            if (AdminLogikk.adminDB(innLoggetAdmin))
+            if (InfoCollector.adminDB(innLoggetAdmin))
             {
                 Session["LoggetInn"] = true;
                 ViewBag.Innlogget = true;
@@ -59,6 +59,7 @@ namespace HyperWingAdmin.Controllers
 
             return RedirectToAction("Login");
         }
+
 
         public ActionResult LoggUt()
         {
