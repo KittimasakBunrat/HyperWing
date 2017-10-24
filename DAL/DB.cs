@@ -9,6 +9,54 @@ namespace HyperWing.DAL
 {
     public class DB
     {
+        public bool adminDB(Admin admin)
+        {
+            using (var db = new FlyContext())
+            {
+                dbAdmin funnetAdmin = db.Administratorer.FirstOrDefault(b => b.Navn == admin.Navn);
+                if (funnetAdmin != null)
+                {
+                    byte[] testPass = lagHash(admin.Passord + funnetAdmin.Salt);
+                    bool riktigBruker = funnetAdmin.Passord.SequenceEqual(testPass);
+                    return riktigBruker;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+        public byte[] lagHash(String hash)
+        {
+            byte[] innData, utData;
+            var algoritme = SHA256.Create();
+            innData = Encoding.UTF8.GetBytes(hash);
+            utData = algoritme.ComputeHash(innData);
+            return utData;
+        }
+
+        public string lagSalt()
+        {
+            byte[] randomArray = new byte[10];
+            string randomString;
+
+            var rng = new RNGCryptoServiceProvider();
+            rng.GetBytes(randomArray);
+            randomString = Convert.ToBase64String(randomArray);
+            return randomString;
+        }
+
+        public string HashStreng(String innStreng)
+        {
+            byte[] hash = lagHash(innStreng);
+            StringBuilder stringBuilder = new StringBuilder();
+            for (int i = 0; i < hash.Length; i++)
+            {
+                stringBuilder.Append(hash[i].ToString("x2"));
+            }
+            return stringBuilder.ToString();
+        }
 
         //Från gammal DB
         public List<FlyReise> listAlleReiser()
@@ -91,7 +139,7 @@ namespace HyperWing.DAL
 
         public List<String> hentTilFlyplasser(String ByFra)
         {
-            using (var db = new FlyContext())
+           using(var db = new FlyContext())
             {
                 List<Reiser> alleFly = db.Reiser.ToList();
 
@@ -99,7 +147,7 @@ namespace HyperWing.DAL
 
                 foreach (Reiser f in alleFly)
                 {
-                    if (f.ByFra != ByFra)
+                    if(f.ByFra != ByFra)
                     {
                         string funnetStrekning = alleTilFly.FirstOrDefault(fl => fl.Contains(f.ByFra));
                         if (funnetStrekning == null)
@@ -115,7 +163,7 @@ namespace HyperWing.DAL
 
         public List<Reiser> hentTilgjengeligRute(String ByFra, String ByTil)
         {
-            var db = new FlyContext();
+            var db = new FlyContext(); 
             List<Reiser> tilgjengeligRute = db.Reiser.Where(f => f.ByTil == ByTil && f.ByFra == ByFra).ToList();
 
             return tilgjengeligRute;
@@ -123,7 +171,7 @@ namespace HyperWing.DAL
 
         public dynamic hentMellomlanding(String ByFra, String ByTil)
         {
-            var db = new FlyContext();
+            var db = new FlyContext(); 
             var mellomlandinger = (from ra in db.Reiser
                                    from rb in db.Reiser
                                    where ra.ByTil == rb.ByFra && ra.ByFra == ByFra && rb.ByTil == ByTil
@@ -143,37 +191,35 @@ namespace HyperWing.DAL
                                        Reisetid = ra.Reisetid + rb.Reisetid
                                    }).ToList();
 
-            return mellomlandinger;
+            return mellomlandinger; 
         }
 
         public Kunde leggTilKunde(Kunde kunde)
         {
 
-            Kunde nyKunde = kunde;
+            Kunde nyKunde = kunde; 
 
             using (var db = new FlyContext())
             {
-
+                try
+                {
                     db.Kunder.Add(nyKunde);
-                    db.SaveChanges();
- 
+                    db.SaveChanges(); 
+                }catch(Exception ex)
+                {
+                    Console.Write("Feil ved innsetting av kunde");
+                }
             }
 
             return nyKunde;
         }
 
-        public void leggTil(List<HyperWing.Model.Reiser> reiser)
-        {
-            var db = new FlyContext();
-            List<Reiser> reiseListe = db.Reiser.ToList();
-        }
 
-        public Billett visBestilling(Kunde kunde, List<HyperWing.Model.Reiser> reiser)
+        public Billett visBestilling(Kunde kunde, List<Reiser> reiser)
         {
-            //den skal jo hente fra session?
-            HyperWing.Model.Reiser reise1;
-            HyperWing.Model.Reiser reise2;
-        
+
+            Reiser reise1;
+            Reiser reise2;
 
             var billet = new Billett();
 
@@ -228,21 +274,23 @@ namespace HyperWing.DAL
                 }
             }
 
-            return billet;
+            return billet; 
         }
-
-        public List<Kunde> hentKunder()
+        
+        //UBRUKELIG
+        public List<Reiser> listReiser()
         {
             var db = new FlyContext();
-            List<Kunde> kundeListe = db.Kunder.ToList();
-            return kundeListe;
+            List<Reiser> liste = db.Reiser.ToList();
+            return liste; 
         }
 
-        public bool adminDB(Admin admin)
-        {
-            var db = new DB();
-            return db.adminDB(admin);
+        public Reiser hentReise() {
+            var ret = new Reiser();
+            return ret;
         }
+
+
     }
 }
 
