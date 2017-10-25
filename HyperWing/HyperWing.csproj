@@ -127,7 +127,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\FlyController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -145,28 +144,6 @@
     <Content Include="Views\Fly\Søkreise.cshtml" />
     <Content Include="Views\Fly\BestillReiseDirekte.cshtml" />
     <Content Include="Views\Fly\ListeKunde.cshtml" />
-    <Content Include="Views\Admin\AdminSide.cshtml" />
-    <Content Include="Views\Admin\Login.cshtml" />
-    <Content Include="Views\Admin\ListeKunder.cshtml" />
-    <Content Include="Views\Admin\ListeFlyplasser.cshtml" />
-    <Content Include="Views\Admin\ListeBilletter.cshtml" />
-    <Content Include="Views\Admin\ListeReiser.cshtml" />
-    <Content Include="Views\Admin\RegistrerKunde.cshtml" />
-    <Content Include="Views\Admin\RegistrerFlyplass.cshtml" />
-    <Content Include="Views\Admin\RegistrerBillett.cshtml" />
-    <Content Include="Views\Admin\RegistrerReise.cshtml" />
-    <Content Include="Views\Admin\EndreKunde.cshtml" />
-    <Content Include="Views\Admin\EndreFlyplass.cshtml" />
-    <Content Include="Views\Admin\EndreBillett.cshtml" />
-    <Content Include="Views\Admin\EndreReise.cshtml" />
-    <Content Include="Views\Admin\SlettKunde.cshtml" />
-    <Content Include="Views\Admin\SlettBillett.cshtml" />
-    <Content Include="Views\Admin\SlettFlyplass.cshtml" />
-    <Content Include="Views\Admin\SlettReise.cshtml" />
-    <Content Include="Views\Admin\detaljerKunde.cshtml" />
-    <Content Include="Views\Admin\detaljerBillett.cshtml" />
-    <Content Include="Views\Admin\detaljerFlyplass.cshtml" />
-    <Content Include="Views\Admin\detaljerReise.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

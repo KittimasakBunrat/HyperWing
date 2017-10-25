@@ -87,9 +87,12 @@ namespace HyperWing.Controllers
 
         }
 
+        public ActionResult ListeKunde() {
+            return View(InfoCollector.hentKunder());
+        }
+
         public ActionResult Admin()
         {
-
             return Redirect("http://localhost:64693/Admin/Login");
         }
     }
