@@ -143,6 +143,7 @@
     <Content Include="Views\Fly\VisBestilling.cshtml" />
     <Content Include="Views\Fly\Søkreise.cshtml" />
     <Content Include="Views\Fly\BestillReiseDirekte.cshtml" />
+    <Content Include="Views\Fly\ListeKunde.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
