@@ -90,7 +90,6 @@ namespace HyperWingAdmin.Controllers
             }
 
             return RedirectToAction("Login");
-            
         }
     }
 }
