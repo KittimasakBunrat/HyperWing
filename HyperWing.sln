@@ -1,11 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.16
+VisualStudioVersion = 15.0.26403.7
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HyperWing", "HyperWing\HyperWing.csproj", "{2C5597EF-6ADC-4B8A-9209-073EC3F46DC7}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HyperWingAdmin", "HyperWingAdmin\HyperWingAdmin.csproj", "{95758C1A-6F0B-4722-9F0F-D39F15B5F4F8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL\BLL.csproj", "{8107B6CF-8870-4D91-B7A2-726E13545AAB}"
 EndProject
@@ -23,10 +21,6 @@ Global
 		{2C5597EF-6ADC-4B8A-9209-073EC3F46DC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2C5597EF-6ADC-4B8A-9209-073EC3F46DC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2C5597EF-6ADC-4B8A-9209-073EC3F46DC7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{95758C1A-6F0B-4722-9F0F-D39F15B5F4F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{95758C1A-6F0B-4722-9F0F-D39F15B5F4F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{95758C1A-6F0B-4722-9F0F-D39F15B5F4F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{95758C1A-6F0B-4722-9F0F-D39F15B5F4F8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8107B6CF-8870-4D91-B7A2-726E13545AAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8107B6CF-8870-4D91-B7A2-726E13545AAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8107B6CF-8870-4D91-B7A2-726E13545AAB}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using HyperWing.DAL;
 using HyperWing.Model;
+using Model;
 
 namespace HyperWing.BLL
 {
@@ -68,6 +69,24 @@ namespace HyperWing.BLL
         {
             var db = new DB();
             return db.hentKunder();
+        }
+
+        public List<Flyplasser> hentFlyplasser()
+        {
+            var db = new DB();
+            return db.hentFlyplasser();
+        }
+
+        public List<Billett> hentBilletter()
+        {
+            var db = new DB();
+            return db.hentBilletter();
+        }
+
+        public List<Reiser> hentReiser()
+        {
+            var db = new DB();
+            return db.hentReiser();
         }
 
 

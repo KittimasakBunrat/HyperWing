@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using HyperWing.Model;
+using Model;
 
 namespace HyperWing.DAL
 {
@@ -284,6 +285,27 @@ namespace HyperWing.DAL
             var db = new FlyContext();
             List<Kunde> kundeListe = db.Kunder.ToList();
             return kundeListe;
+        }
+
+        public List<Flyplasser> hentFlyplasser()
+        {
+            var db = new FlyContext();
+            List<Flyplasser> flyplassListe = db.Flyplasser.ToList();
+            return flyplassListe;
+        }
+
+        public List<Billett> hentBilletter()
+        {
+            var db = new FlyContext();
+            List<Billett> billettListe = db.Billetter.ToList();
+            return billettListe;
+        }
+
+        public List<Reiser> hentReiser()
+        {
+            var db = new FlyContext();
+            List<Reiser> reiserListe = db.Reiser.ToList();
+            return reiserListe;
         }
     }
 }

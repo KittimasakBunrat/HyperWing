@@ -7,10 +7,12 @@ using System.Data.Entity;
 using System.ComponentModel.DataAnnotations;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using HyperWing.Model;
+using Model;
 
 namespace HyperWing.DAL
 {
 
+    /*
     public class dbAdmin
     {
         [Key]
@@ -18,6 +20,8 @@ namespace HyperWing.DAL
         public byte[] Passord { get; set; }
         public String Salt { get; set; }
     }
+
+    
 
     public class Flyplasser
     {
@@ -27,7 +31,9 @@ namespace HyperWing.DAL
         public virtual List<Reiser> Reiser { get; set; }
     }
 
-    /*
+        
+
+    
     public class Reiser
     {
         [Key]
@@ -56,10 +62,7 @@ namespace HyperWing.DAL
         public DbSet<dbAdmin> Administratorer { get; set; }
         public DbSet<Flyplasser> Flyplasser { get; set; }
         public DbSet<Reiser> Reiser { get; set; }
-
-        //lag entiter, fjern import
-        public DbSet<Kunde> Kunder { get; set; }
-        //lag entiter, fjern import 
+        public DbSet<Kunde> Kunder { get; set; } 
         public DbSet<Billett> Billetter { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
