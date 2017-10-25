@@ -74,9 +74,7 @@ namespace HyperWingAdmin.Controllers
             return RedirectToAction("Login");
         }
 
-        [ActionName("KundeListe")]
-        [HttpGet]
-        public ActionResult KundeListe()
+        public ActionResult ListeteKunder()
         {
             return View(InfoCollector.hentKunder());
         }
