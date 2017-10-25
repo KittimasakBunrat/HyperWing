@@ -12,6 +12,9 @@ namespace HyperWingAdmin.Controllers
 {
     public class AdminController : Controller
     {
+
+        HyperWing.BLL.AdminBLL bll = new HyperWing.BLL.AdminBLL();
+
         public ActionResult Login()
         {
             if (Session["LoggetInn"] == null)
@@ -31,7 +34,7 @@ namespace HyperWingAdmin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(Admin innLoggetAdmin)
         {
-            if (InfoCollector.adminDB(innLoggetAdmin))
+            if (bll.adminDB(innLoggetAdmin))
             {
                 Session["LoggetInn"] = true;
                 ViewBag.Innlogget = true;
@@ -76,7 +79,7 @@ namespace HyperWingAdmin.Controllers
 
         public ActionResult ListeteKunder()
         {
-            return View(InfoCollector.hentKunder());
+            return View(bll.hentKunder());
         }
     }
 }
