@@ -8,10 +8,12 @@ using System.Text;
 using HyperWing.BLL;
 using HyperWing.Model;
 
+
 namespace HyperWingAdmin.Controllers
 {
     public class AdminController : Controller
     {
+
         public ActionResult Login()
         {
             if (Session["LoggetInn"] == null)
@@ -63,9 +65,7 @@ namespace HyperWingAdmin.Controllers
 
         public ActionResult VisAdminBestilling()
         {
-
             return View();
-
         }
 
 
@@ -75,11 +75,22 @@ namespace HyperWingAdmin.Controllers
             return RedirectToAction("Login");
         }
 
-        [ActionName("KundeListe")]
-        [HttpGet]
+        //[ActionName("KundeListe")]
+        //[HttpGet]
         public ActionResult KundeListe()
         {
-            return View(InfoCollector.hentKunder());
+            if (Session["LoggetInn"] != null)
+            {
+                bool loggetInn = (bool)Session["LoggetInn"];
+                ViewBag.Innlogget = true;
+                if (loggetInn)
+                {
+                    return View(InfoCollector.hentKunder());
+                }
+            }
+
+            return RedirectToAction("Login");
+            
         }
     }
 }
