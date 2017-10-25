@@ -290,6 +290,8 @@ namespace HyperWing.DAL
             List<Kunde> kundeListe = db.Kunder.ToList();
             return kundeListe;
         }
+
+
     }
 }
 
