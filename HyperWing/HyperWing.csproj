@@ -151,6 +151,14 @@
     <Content Include="Views\Admin\ListeFlyplasser.cshtml" />
     <Content Include="Views\Admin\ListeBilletter.cshtml" />
     <Content Include="Views\Admin\ListeReiser.cshtml" />
+    <Content Include="Views\Admin\RegistrerKunde.cshtml" />
+    <Content Include="Views\Admin\RegistrerFlyplass.cshtml" />
+    <Content Include="Views\Admin\RegistrerBillett.cshtml" />
+    <Content Include="Views\Admin\RegistrerReise.cshtml" />
+    <Content Include="Views\Admin\EndreKunde.cshtml" />
+    <Content Include="Views\Admin\EndreFlyplass.cshtml" />
+    <Content Include="Views\Admin\EndreBillett.cshtml" />
+    <Content Include="Views\Admin\EndreReise.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
