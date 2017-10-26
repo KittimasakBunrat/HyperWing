@@ -6,8 +6,6 @@ namespace HyperWing.BLL
 {
     public interface IAdminLogikk
     {
-        bool adminDB(Admin admin);
-
         bool endreKunde(int id, Kunde innKunde);
         List<Kunde> hentAlleKunder();
         Kunde hentEnKunde(int id);
