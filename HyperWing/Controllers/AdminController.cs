@@ -92,7 +92,148 @@ namespace HyperWing.Controllers
             return View(alleReiser);
         }
 
+        public ActionResult RegistrerKunde()
+        {
+            return View();
+        }
 
+        [HttpPost]
+        public ActionResult RegistrerKunde(Kunde innKunde)
+        {
+            if (ModelState.IsValid)
+            {
+                bool insertOK = _adminBLL.settInnKunde(innKunde);
+                if (insertOK)
+                {
+                    return RedirectToAction("ListeKunder");
+                }
+            }
+            return View();
+        }
 
+        public ActionResult RegistrerFlyplass()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult RegistrerFlyplass(Flyplasser innFlyplass)
+        {
+            if (ModelState.IsValid)
+            {
+                bool insertOK = _adminBLL.settInnFlyplass(innFlyplass);
+                if (insertOK)
+                {
+                    return RedirectToAction("ListeFlyplasser");
+                }
+            }
+            return View();
+        }
+
+        public ActionResult RegistrerBillett()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult RegistrerBillett(Billett innBillett)
+        {
+            if (ModelState.IsValid)
+            {
+                bool insertOK = _adminBLL.settInnBillett(innBillett);
+                if (insertOK)
+                {
+                    return RedirectToAction("ListeBilletter");
+                }
+            }
+            return View();
+        }
+
+        public ActionResult RegistrerReise()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult RegistrerReise(Reiser innReise)
+        {
+            if (ModelState.IsValid)
+            {
+                bool insertOK = _adminBLL.settInnReise(innReise);
+                if (insertOK)
+                {
+                    return RedirectToAction("ListeReiser");
+                }
+            }
+            return View();
+        }
+
+        public ActionResult EndreKunde(int id)
+        {
+            Kunde enKunde = _adminBLL.hentEnKunde(id);
+            return View(enKunde);
+        }
+
+        [HttpPost]
+        public ActionResult EndreKunde(int id, Kunde endreKunde)
+        {
+            bool endringOK = _adminBLL.endreKunde(id, endreKunde);
+            if (endringOK)
+            {
+                return RedirectToAction("ListeKunder");
+            }
+            return View();
+        }
+
+        public ActionResult EndreFlyplass(int id)
+        {
+            Flyplasser enFlyplass = _adminBLL.hentEnFlyplass(id);
+            return View(enFlyplass);
+        }
+
+        [HttpPost]
+        public ActionResult EndreFlyplass(int id, Flyplasser endreFlyplass)
+        {
+            bool endringOK = _adminBLL.endreFlyplass(id, endreFlyplass);
+            if (endringOK)
+            {
+                return RedirectToAction("ListeFlyplasser");
+            }
+            return View();
+        }
+
+        public ActionResult EndreBillett(int id)
+        {
+            Billett enBillett = _adminBLL.hentEnBillett(id);
+            return View(enBillett);
+        }
+
+        [HttpPost]
+        public ActionResult EndreBillett(int id, Billett endreBillett)
+        {
+            bool endringOK = _adminBLL.endreBillett(id, endreBillett);
+            if (endringOK)
+            {
+                return RedirectToAction("ListeBilletter");
+            }
+            return View();
+        }
+
+        public ActionResult EndreReise(int id)
+        {
+            Reiser enReise = _adminBLL.hentEnReise(id);
+            return View(enReise);
+        }
+
+        [HttpPost]
+        public ActionResult EndreReise(int id, Reiser endreReise)
+        {
+            bool endringOK = _adminBLL.endreReise(id, endreReise);
+            if (endringOK)
+            {
+                return RedirectToAction("ListeReiser");
+            }
+            return View();
+        }
     }
 }
