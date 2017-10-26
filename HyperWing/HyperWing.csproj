@@ -147,6 +147,10 @@
     <Content Include="Views\Fly\ListeKunde.cshtml" />
     <Content Include="Views\Admin\AdminSide.cshtml" />
     <Content Include="Views\Admin\Login.cshtml" />
+    <Content Include="Views\Admin\ListeKunder.cshtml" />
+    <Content Include="Views\Admin\ListeFlyplasser.cshtml" />
+    <Content Include="Views\Admin\ListeBilletter.cshtml" />
+    <Content Include="Views\Admin\ListeReiser.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
