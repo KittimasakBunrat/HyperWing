@@ -28,6 +28,12 @@ namespace HyperWing.DAL
             }
         }
 
+      /*  public bool adminDB(Admin admin)
+        {
+            var db = new DB();
+            return db.adminDB(admin);
+        }*/
+
         public byte[] lagHash(String hash)
         {
             byte[] innData, utData;

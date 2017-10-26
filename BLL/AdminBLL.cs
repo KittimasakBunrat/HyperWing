@@ -23,8 +23,11 @@ namespace HyperWing.BLL
             _repository = stub;
         }
 
-        
-        
+        public bool adminDB(Admin admin)
+        {
+            return _repository.adminDB(admin);
+        }
+
 
         // Kunde
         public bool endreKunde(int id, Kunde innKunde)
