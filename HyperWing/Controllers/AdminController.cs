@@ -21,44 +21,32 @@ namespace HyperWing.Controllers
             _adminBLL = stub;
         }
 
+       // BLL.AdminLogikk bll = new BLL.AdminLogikk();
+
         public ActionResult Login()
         {
             if (Session["LoggetInn"] == null)
             {
                 Session["LoggetInn"] = false;
-                ViewBag.Innlogget = false;
-            }
-            else
-            {
-                ViewBag.Innlogget = (bool)Session["LoggetInn"];
             }
 
             return View();
         }
 
-        /*
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Login(Admin innLoggetAdmin)
         {
-            if (.adminDB(innLoggetAdmin))
+            if (_adminBLL.adminDB(innLoggetAdmin))
             {
                 Session["LoggetInn"] = true;
-                ViewBag.Innlogget = true;
                 return RedirectToAction("AdminSide");
             }
             else
             {
                 Session["LoggetInn"] = false;
-                ViewBag.Innlogget = false;
                 return View();
             }
-        }
-        */
-        public ActionResult ReiseListe()
-        {
-            List<Reiser> alleReiser = _adminBLL.hentAlleReiser();
-            return View(alleReiser);
         }
 
         public ActionResult AdminSide()
@@ -66,7 +54,6 @@ namespace HyperWing.Controllers
             if (Session["LoggetInn"] != null)
             {
                 bool loggetInn = (bool)Session["LoggetInn"];
-                ViewBag.Innlogget = true;
                 if (loggetInn)
                 {
                     return View();
@@ -75,24 +62,34 @@ namespace HyperWing.Controllers
             return RedirectToAction("Login");
         }
 
-
-        public ActionResult VisAdminBestilling()
-        {
-
-            return View();
-
-        }
-
-
         public ActionResult LoggUt()
         {
             Session["LoggetInn"] = false;
             return RedirectToAction("Login");
         }
 
-        public ActionResult ListeteKunder()
+        public ActionResult ListeKunder()
         {
-            return View(_adminBLL.hentAlleKunder());
+            List<Kunde> alleKunder = _adminBLL.hentAlleKunder();
+            return View(alleKunder);
+        }
+
+        public ActionResult ListeFlyplasser()
+        {
+            List<Flyplasser> alleFlyplasser = _adminBLL.hentAlleFlyplasser();
+            return View(alleFlyplasser);
+        }
+
+        public ActionResult ListeBilletter()
+        {
+            List<Billett> alleBilletter = _adminBLL.hentAlleBilletter();
+            return View(alleBilletter);
+        }
+
+        public ActionResult ListeReiser()
+        {
+            List<Reiser> alleReiser = _adminBLL.hentAlleReiser();
+            return View(alleReiser);
         }
 
 
