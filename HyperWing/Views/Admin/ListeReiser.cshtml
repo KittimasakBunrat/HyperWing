@@ -7,7 +7,7 @@
 <h2>ListeReiser</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "RegistrerReise")
 </p>
 <table class="table">
     <tr>
@@ -71,7 +71,7 @@
             @Html.DisplayFor(modelItem => item.FId)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.RId }) |
+            @Html.ActionLink("Edit", "EndreReise", new { id=item.RId }) |
             @Html.ActionLink("Details", "Details", new { id=item.RId }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.RId })
         </td>
