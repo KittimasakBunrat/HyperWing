@@ -10,5 +10,8 @@ using HyperWing.Model;
 
 namespace HyperWingAdmin.Controllers
 {
-   
+    public class AdminController : Controller
+    {
+ 
+    }
 }

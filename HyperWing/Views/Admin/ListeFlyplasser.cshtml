@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Model.Flyplasser>
+﻿@model IEnumerable<HyperWing.Model.Flyplasser>
 
 @{
     ViewBag.Title = "ListeFlyplasser";
@@ -7,7 +7,7 @@
 <h2>ListeFlyplasser</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "RegistrerFlyplass")
 </p>
 <table class="table">
     <tr>
@@ -23,7 +23,7 @@
             @Html.DisplayFor(modelItem => item.Navn)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.FId }) |
+            @Html.ActionLink("Edit", "EndreFlyplass", new { id=item.FId }) |
             @Html.ActionLink("Details", "Details", new { id=item.FId }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.FId })
         </td>

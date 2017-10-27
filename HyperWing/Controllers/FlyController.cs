@@ -12,25 +12,23 @@ namespace HyperWing.Controllers
 {
     public class FlyController : Controller
     {
-        HyperWing.BLL.AdminBLL bll = new HyperWing.BLL.AdminBLL();
-
         public ActionResult Søkreise()
         {
             return View();
         }
-
+        /*
         public string hentAlleFraFlyplasser()
         {
 
             var jsonSerializer = new JavaScriptSerializer();
-            return jsonSerializer.Serialize(bll.hentAlleFraFlyplasser());
+            return jsonSerializer.Serialize(AdminBLL.hentAlleFraFlyplasser());
 
         }
 
         public string hentTilFlyplasser(string ByFra)
         {
             var jsonSerializer = new JavaScriptSerializer();
-            return jsonSerializer.Serialize(bll.hentTilFlyplasser(ByFra));
+            return jsonSerializer.Serialize(AdminBLL.hentTilFlyplasser(ByFra));
 
         }
 
@@ -39,21 +37,21 @@ namespace HyperWing.Controllers
         public string hentStrekning(string ByFra, string ByTil)
         {
 
-            if (bll.hentTilgjengeligRute(ByFra, ByTil).Count == 0)
+            if (AdminBLL.hentTilgjengeligRute(ByFra, ByTil).Count == 0)
             {
                 var jsonSerial = new JavaScriptSerializer();
-                return jsonSerial.Serialize(bll.hentMellomlanding(ByFra, ByTil));
+                return jsonSerial.Serialize(AdminBLL.hentMellomlanding(ByFra, ByTil));
             }
 
             var jsonSerializer = new JavaScriptSerializer();
-            return jsonSerializer.Serialize(bll.hentTilgjengeligRute(ByFra, ByTil));
+            return jsonSerializer.Serialize(AdminBLL.hentTilgjengeligRute(ByFra, ByTil));
 
         }
 
         public ActionResult BestillReiseMellom(int id, int Id2)
         {
 
-            Session["valgtReise"] = bll.hentValgtReise(id, Id2);
+            Session["valgtReise"] = InfoCollector.hentValgtReise(id, Id2);
 
             return View();
         }
@@ -61,7 +59,7 @@ namespace HyperWing.Controllers
         public ActionResult BestillReiseDirekte(int id)
         {
 
-            Session["valgtReise"] = bll.hentValgtReise(id);
+            Session["valgtReise"] = InfoCollector.hentValgtReise(id);
 
             return View();
         }
@@ -69,14 +67,14 @@ namespace HyperWing.Controllers
         [HttpPost]
         public ActionResult BestillReiseMellom(Kunde kunde)
         {
-            Session["registrertKunde"] = bll.leggTilKunde(kunde);
+            Session["registrertKunde"] = InfoCollector.leggTilKunde(kunde);
             return RedirectToAction("VisBestilling");
         }
 
         [HttpPost]
         public ActionResult BestillReiseDirekte(Kunde kunde)
         {
-            Session["registrertKunde"] = bll.leggTilKunde(kunde);
+            Session["registrertKunde"] = InfoCollector.leggTilKunde(kunde);
             return RedirectToAction("VisBestilling");
         }
 
@@ -85,17 +83,17 @@ namespace HyperWing.Controllers
 
             Kunde kunde = (Kunde)Session["registrertKunde"];
             List<Reiser> reiser = (List<Reiser>)Session["valgtReise"];
-            return View(bll.visBestilling(kunde, reiser));
+            return View(AdminBLL.visBestilling(kunde, reiser));
 
         }
 
         public ActionResult ListeKunde() {
-            return View(bll.hentKunder());
+            return View(AdminBLL.hentAlleKunder());
         }
-
+        */
         public ActionResult Admin()
         {
-            return Redirect("http://localhost:64693/Admin/Login");
+            return Redirect("/Admin/Login");
         }
     }
 }
