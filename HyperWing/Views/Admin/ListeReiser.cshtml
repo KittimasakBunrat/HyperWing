@@ -50,43 +50,42 @@
             <th></th>
         </tr>
 
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ByFra)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ByTil)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Flyplass)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Avgangstid)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Ankomstid)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Reisetid)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Pris)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Informasjon)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FId)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "EndreReise", new { id = item.RId }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.RId }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.RId })
-                </td>
-            </tr>
-        }
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ByFra)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ByTil)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Flyplass)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Avgangstid)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ankomstid)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Reisetid)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pris)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Informasjon)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FId)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "EndreReise", new { id=item.RId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.RId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.RId })
+        </td>
+    </tr>
+}
 
 
     </table>
