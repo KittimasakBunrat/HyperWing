@@ -235,5 +235,103 @@ namespace HyperWing.Controllers
             }
             return View();
         }
+
+        public ActionResult SlettKunde(int id)
+        {
+            Kunde element = _adminBLL.hentEnKunde(id);
+            return View(element);
+        }
+
+        [HttpPost]
+        public ActionResult SlettKunde(int id, Kunde element)
+        {
+            bool slettok = _adminBLL.slettKunde(id);
+            if (slettok)
+            {
+                return RedirectToAction("ListeKunder"); 
+            }
+
+            return View();
+        }
+
+        public ActionResult SlettBillett(int id)
+        {
+            Billett element = _adminBLL.hentEnBillett(id);
+            return View(element);
+        }
+
+        [HttpPost]
+        public ActionResult SlettBillett(int id, Billett element)
+        {
+            bool slettok = _adminBLL.slettBillett(id);
+            if (slettok)
+            {
+                return RedirectToAction("ListeBilletter");
+            }
+
+            return View();
+        }
+
+        public ActionResult SlettFlyplass(int id)
+        {
+            Flyplasser element = _adminBLL.hentEnFlyplass(id);
+            return View(element);
+        }
+
+        [HttpPost]
+        public ActionResult SlettFlyplass(int id, Flyplasser element)
+        {
+            bool slettok = _adminBLL.slettFlyplass(id);
+            if (slettok)
+            {
+                return RedirectToAction("ListeFlyplasser");
+            }
+
+            return View();
+        }
+
+        public ActionResult SlettReise(int id)
+        {
+            Reiser element = _adminBLL.hentEnReise(id);
+            return View(element);
+        }
+
+        [HttpPost]
+        public ActionResult SlettReise(int id, Flyplasser element)
+        {
+            bool slettok = _adminBLL.slettReise(id);
+            if (slettok)
+            {
+                return RedirectToAction("ListeReiser");
+            }
+
+            return View();
+        }
+
+        public ActionResult detaljerKunde(int id)
+        {
+            Kunde element = _adminBLL.hentEnKunde(id);
+            return View(element); 
+        }
+
+        public ActionResult detaljerBillett(int id)
+        {
+            Billett element = _adminBLL.hentEnBillett(id);
+            return View(element);
+        }
+
+        public ActionResult detaljerReise(int id)
+        {
+            Reiser element = _adminBLL.hentEnReise(id);
+            return View(element);
+        }
+
+        public ActionResult detaljerFlyplass(int id)
+        {
+            Flyplasser element = _adminBLL.hentEnFlyplass(id);
+            return View(element);
+        }
+
+
     }
 }
