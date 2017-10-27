@@ -7,7 +7,7 @@
 <h2>ListeReiser</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "RegistrerReise")
 </p>
 <table class="table">
     <tr>
@@ -31,6 +31,12 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Pris)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Informasjon)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FId)
         </th>
         <th></th>
     </tr>
@@ -59,7 +65,13 @@
             @Html.DisplayFor(modelItem => item.Pris)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.RId }) |
+            @Html.DisplayFor(modelItem => item.Informasjon)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FId)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "EndreReise", new { id=item.RId }) |
             @Html.ActionLink("Details", "Details", new { id=item.RId }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.RId })
         </td>

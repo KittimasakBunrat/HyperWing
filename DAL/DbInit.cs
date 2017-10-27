@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data.Entity;
-using Model;
+using HyperWing.Model;
 
 namespace HyperWing.DAL
 {
@@ -21,7 +21,7 @@ namespace HyperWing.DAL
             var HKG = new Flyplasser() { Navn = "HKG - Hong Kong Airport" };
             var JFK = new Flyplasser() { Navn = "JFK - John F Kennedy Airport" };
 
-            var db = new DB();
+            var db = new AdminRepository();
             String passord = "root";
             String salt = db.lagSalt();
             var passordOgSalt = passord + salt;
