@@ -4,12 +4,16 @@
     ViewBag.Title = "detaljerKunde";
 }
 
+<header>
+    <link rel="stylesheet" href="~/Content/styles.css">
+</header>
+
 <h2>detaljerKunde</h2>
 
 <div>
     <h4>Kunde</h4>
     <hr />
-    <dl class="dl-horizontal">
+    <dl class="dl-horizontal containerStyle containerStyle2">
         <dt>
             @Html.DisplayNameFor(model => model.personNr)
         </dt>
@@ -41,10 +45,9 @@
         <dd>
             @Html.DisplayFor(model => model.telefon)
         </dd>
-
+        <p>
+            @Html.ActionLink("Back to List", "ListeKunder")
+        </p>
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "ListeKunder")
-</p>
+

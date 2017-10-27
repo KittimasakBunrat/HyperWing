@@ -4,13 +4,17 @@
     ViewBag.Title = "SlettBillett";
 }
 
+<header>
+    <link rel="stylesheet" href="~/Content/styles.css">
+</header>
+
 <h2>SlettBillett</h2>
+
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>Billett</h4>
     <hr />
-    <dl class="dl-horizontal">
+    <dl class="dl-horizontal containerStyle containerStyle2">
         <dt>
             @Html.DisplayNameFor(model => model.PersonNr)
         </dt>
@@ -99,14 +103,16 @@
             @Html.DisplayFor(model => model.Pris)
         </dd>
 
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "ListeBilletter")
+            </div>
+        }
+
     </dl>
 
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "ListeBilletter")
-        </div>
-    }
 </div>

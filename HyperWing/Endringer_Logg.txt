@@ -72,3 +72,24 @@ WHERE @@ROWCOUNT > 0 AND [Id] = scope_identity()
 
 Committed transaction at 10/27/2017 5:03:35 PM +02:00
 Closed connection at 10/27/2017 5:03:35 PM +02:00
+Opened connection at 10/27/2017 5:18:18 PM +02:00
+SELECT TOP (1) 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[PersonNr] AS [PersonNr], 
+    [Extent1].[Navn] AS [Navn], 
+    [Extent1].[ByFra] AS [ByFra], 
+    [Extent1].[Mellomlanding] AS [Mellomlanding], 
+    [Extent1].[ByTil] AS [ByTil], 
+    [Extent1].[Epost] AS [Epost], 
+    [Extent1].[Telefon] AS [Telefon], 
+    [Extent1].[Avgang] AS [Avgang], 
+    [Extent1].[Ankomst] AS [Ankomst], 
+    [Extent1].[Flyplass] AS [Flyplass], 
+    [Extent1].[Pris] AS [Pris]
+    FROM [dbo].[Billett] AS [Extent1]
+    WHERE [Extent1].[Id] = @p__linq__0
+-- p__linq__0: '1' (Type = Int32, IsNullable = false)
+-- Executing at 10/27/2017 5:18:18 PM +02:00
+-- Completed in 14 ms with result: SqlDataReader
+
+Closed connection at 10/27/2017 5:18:18 PM +02:00
