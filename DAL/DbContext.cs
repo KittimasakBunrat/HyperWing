@@ -7,6 +7,7 @@ using System.Data.Entity;
 using System.ComponentModel.DataAnnotations;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using HyperWing.Model;
+using System.IO;
 
 namespace HyperWing.DAL
 {
@@ -56,15 +57,25 @@ namespace HyperWing.DAL
         public DbSet<dbAdmin> Administratorer { get; set; }
         public DbSet<Flyplasser> Flyplasser { get; set; }
         public DbSet<Reiser> Reiser { get; set; }
-
-        //lag entiter, fjern import
         public DbSet<Kunde> Kunder { get; set; }
-        //lag entiter, fjern import 
         public DbSet<Billett> Billetter { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+        }
+
+        public void LoggEndringer(String param)
+        {
+
+            String path = System.AppDomain.CurrentDomain.BaseDirectory + "/Endringer_Logg.txt";
+            File.AppendAllText(path, param);
+        }
+
+        public void LoggFeilmeldinger(String param)
+        {
+            String path = System.AppDomain.CurrentDomain.BaseDirectory + "/Feil_Logg";
+            File.AppendAllText(path, param); 
         }
     }
 }

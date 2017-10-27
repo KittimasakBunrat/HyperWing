@@ -156,7 +156,8 @@ namespace HyperWing.DAL
 
                     db.Kunder.Add(nyKunde);
                     db.SaveChanges();
- 
+
+
             }
 
             return nyKunde;

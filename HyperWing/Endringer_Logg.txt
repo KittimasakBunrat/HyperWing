@@ -1,0 +1,34 @@
+Opened connection at 27/10/2017 15:49:09 +02:00
+Started transaction at 27/10/2017 15:49:09 +02:00
+INSERT [dbo].[Flyplasser]([Navn])
+VALUES (@0)
+SELECT [FId]
+FROM [dbo].[Flyplasser]
+WHERE @@ROWCOUNT > 0 AND [FId] = scope_identity()
+-- @0: 'phoumchou' (Type = String, Size = -1)
+-- Executing at 27/10/2017 15:49:09 +02:00
+-- Completed in 23 ms with result: SqlDataReader
+
+Committed transaction at 27/10/2017 15:49:09 +02:00
+Closed connection at 27/10/2017 15:49:09 +02:00
+Opened connection at 27/10/2017 15:49:23 +02:00
+SELECT TOP (1) 
+    [Extent1].[FId] AS [FId], 
+    [Extent1].[Navn] AS [Navn]
+    FROM [dbo].[Flyplasser] AS [Extent1]
+    WHERE [Extent1].[FId] = @p__linq__0
+-- p__linq__0: '12' (Type = Int32, IsNullable = false)
+-- Executing at 27/10/2017 15:49:23 +02:00
+-- Completed in 24 ms with result: SqlDataReader
+
+Closed connection at 27/10/2017 15:49:23 +02:00
+Opened connection at 27/10/2017 15:49:23 +02:00
+Started transaction at 27/10/2017 15:49:23 +02:00
+DELETE [dbo].[Flyplasser]
+WHERE ([FId] = @0)
+-- @0: '12' (Type = Int32)
+-- Executing at 27/10/2017 15:49:23 +02:00
+-- Completed in 21 ms with result: 1
+
+Committed transaction at 27/10/2017 15:49:23 +02:00
+Closed connection at 27/10/2017 15:49:23 +02:00
