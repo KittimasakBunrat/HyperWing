@@ -1,0 +1,45 @@
+﻿@model IEnumerable<HyperWing.Model.Flyplasser>
+
+@{
+    ViewBag.Title = "ListeFlyplasser";
+}
+
+<header>
+    <link rel="stylesheet" href="~/Content/styles.css">
+</header>
+
+<h2>ListeFlyplasser</h2>
+
+<hr />
+
+<section class="containerStyle2">
+
+    <p>
+        @Html.ActionLink("Create New", "RegistrerFlyplass")
+    </p>
+    <table class="table containerStyle">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Navn)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Navn)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "EndreFlyplass", new { id = item.FId }, new { @class = "btn btn-primary" }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.FId }, new { @class = "btn btn-info" }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.FId }, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
+
+    </table>
+    <a href="/Admin/AdminSide" class="btn btn-default">Tilbake</a>
+
+</section>

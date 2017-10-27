@@ -1,0 +1,107 @@
+﻿@model IEnumerable<HyperWing.Model.Billett>
+
+@{
+    ViewBag.Title = "ListeBilletter";
+}
+
+<header>
+    <link rel="stylesheet" href="~/Content/styles.css">
+</header>
+
+<h2>ListeBilletter</h2>
+
+<hr />
+
+<section class="containerStyle2">
+
+    <p>
+        @Html.ActionLink("Create New", "RegistrerBillett")
+    </p>
+
+
+    <table class="table containerStyle">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PersonNr)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Navn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ByFra)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Mellomlanding)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ByTil)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Epost)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Telefon)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Avgang)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ankomst)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Flyplass)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pris)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PersonNr)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Navn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ByFra)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Mellomlanding)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ByTil)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Epost)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Telefon)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Avgang)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ankomst)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Flyplass)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Pris)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "EndreBillett", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+
+    </table>
+
+    <a href="/Admin/AdminSide" class="btn btn-default">Tilbake</a>
+    </section>
