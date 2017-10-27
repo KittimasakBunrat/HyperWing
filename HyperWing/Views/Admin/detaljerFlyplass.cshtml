@@ -1,0 +1,26 @@
+﻿@model HyperWing.Model.Flyplasser
+
+@{
+    ViewBag.Title = "detaljerFlyplass";
+}
+
+<h2>detaljerFlyplass</h2>
+
+<div>
+    <h4>Flyplasser</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Navn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Navn)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.FId }) |
+    @Html.ActionLink("Back to List", "ListeFlyplasser")
+</p>

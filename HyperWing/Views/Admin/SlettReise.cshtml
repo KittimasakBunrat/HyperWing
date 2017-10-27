@@ -1,0 +1,96 @@
+﻿@model HyperWing.Model.Reiser
+
+@{
+    ViewBag.Title = "SlettReise";
+}
+
+<h2>SlettReise</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Reiser</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ByFra)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ByFra)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ByTil)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ByTil)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Flyplass)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Flyplass)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Avgangstid)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Avgangstid)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ankomstid)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ankomstid)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Reisetid)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Reisetid)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pris)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pris)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Informasjon)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Informasjon)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FId)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "ListeReiser")
+        </div>
+    }
+</div>

@@ -1,0 +1,50 @@
+﻿@model HyperWing.Model.Kunde
+
+@{
+    ViewBag.Title = "detaljerKunde";
+}
+
+<h2>detaljerKunde</h2>
+
+<div>
+    <h4>Kunde</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.personNr)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.personNr)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.navn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.navn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.epost)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.epost)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.telefon)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.telefon)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "ListeKunder")
+</p>

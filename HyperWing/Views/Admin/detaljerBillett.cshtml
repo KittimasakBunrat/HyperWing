@@ -1,0 +1,106 @@
+﻿@model HyperWing.Model.Billett
+
+@{
+    ViewBag.Title = "detaljerBillett";
+}
+
+<h2>detaljerBillett</h2>
+
+<div>
+    <h4>Billett</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PersonNr)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PersonNr)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Navn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Navn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ByFra)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ByFra)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mellomlanding)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mellomlanding)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ByTil)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ByTil)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Epost)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Epost)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Telefon)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Telefon)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Avgang)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Avgang)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ankomst)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ankomst)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Flyplass)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Flyplass)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pris)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pris)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "ListeBilletter")
+</p>
