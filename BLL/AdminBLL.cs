@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using HyperWing.DAL;
 using HyperWing.Model;
-using Model;
 
 namespace HyperWing.BLL
 {
