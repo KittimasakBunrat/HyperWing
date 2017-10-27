@@ -1,0 +1,112 @@
+﻿@model HyperWing.Model.Billett
+
+@{
+    ViewBag.Title = "SlettBillett";
+}
+
+<h2>SlettBillett</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Billett</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PersonNr)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PersonNr)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Navn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Navn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ByFra)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ByFra)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mellomlanding)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mellomlanding)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ByTil)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ByTil)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Epost)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Epost)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Telefon)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Telefon)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Avgang)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Avgang)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ankomst)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ankomst)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Flyplass)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Flyplass)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pris)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pris)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "ListeBilletter")
+        </div>
+    }
+</div>
