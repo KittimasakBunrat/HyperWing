@@ -5,11 +5,13 @@ using System.Text;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
 using HyperWing.Model;
+using System.IO;
 
 namespace HyperWing.DAL
 {
     public class AdminRepository : DAL.IAdminRepository
     {
+
         public bool adminDB(Admin admin)
         {
             using (var db = new FlyContext())
@@ -85,12 +87,14 @@ namespace HyperWing.DAL
             var db = new FlyContext();
             try
             {
+                db.Database.Log = (s) => { db.LoggEndringer(s); };
                 db.Kunder.Add(nyKunde);
                 db.SaveChanges();
                 return true;
             }
             catch (Exception feil)
             {
+                db.LoggFeilmeldinger(feil.ToString());
                 return false;
             }
 
@@ -100,6 +104,7 @@ namespace HyperWing.DAL
             var db = new FlyContext();
             try
             {
+                db.Database.Log = (s) => { db.LoggEndringer(s); };
                 Kunde endreKunde = db.Kunder.FirstOrDefault(k => k.Id == id);
                 endreKunde.epost = innKunde.epost;
                 endreKunde.navn = innKunde.navn;
@@ -109,8 +114,9 @@ namespace HyperWing.DAL
                 db.SaveChanges();
                 return true;
             }
-            catch
+            catch(Exception feil)
             {
+                db.LoggFeilmeldinger(feil.ToString());
                 return false;
             }
         }
@@ -119,6 +125,7 @@ namespace HyperWing.DAL
             var db = new FlyContext();
             try
             {
+                db.Database.Log = (s) => { db.LoggEndringer(s); };
                 Kunde slettKunde = db.Kunder.FirstOrDefault(k => k.Id == slettId);
                 db.Kunder.Remove(slettKunde);
                 db.SaveChanges();
@@ -126,6 +133,7 @@ namespace HyperWing.DAL
             }
             catch (Exception feil)
             {
+                db.LoggFeilmeldinger(feil.ToString());
                 return false;
             }
         }
@@ -163,6 +171,7 @@ namespace HyperWing.DAL
         {
             var nyBillett = new Billett()
             {
+
                 PersonNr = innBillett.PersonNr,
                 Navn = innBillett.Navn,
                 ByFra = innBillett.ByFra,
@@ -179,12 +188,14 @@ namespace HyperWing.DAL
             var db = new FlyContext();
             try
             {
+                db.Database.Log = (s) => { db.LoggEndringer(s); };
                 db.Billetter.Add(nyBillett);
                 db.SaveChanges();
                 return true;
             }
             catch (Exception feil)
             {
+                db.LoggFeilmeldinger(feil.ToString());
                 return false;
             }
         }
@@ -193,6 +204,7 @@ namespace HyperWing.DAL
             var db = new FlyContext();
             try
             {
+                db.Database.Log = (s) => { db.LoggEndringer(s); };
                 Billett endreBillett = db.Billetter.FirstOrDefault(k => k.Id == id);
                 endreBillett.PersonNr = innBillett.PersonNr;
                 endreBillett.Navn = innBillett.Navn;
@@ -209,8 +221,9 @@ namespace HyperWing.DAL
                 db.SaveChanges();
                 return true;
             }
-            catch
+            catch (Exception feil)
             {
+                db.LoggFeilmeldinger(feil.ToString());
                 return false;
             }
         }
@@ -219,6 +232,7 @@ namespace HyperWing.DAL
             var db = new FlyContext();
             try
             {
+                db.Database.Log = (s) => { db.LoggEndringer(s); };
                 Billett slettBillett = db.Billetter.FirstOrDefault(k => k.Id == slettId);
                 db.Billetter.Remove(slettBillett);
                 db.SaveChanges();
@@ -226,6 +240,7 @@ namespace HyperWing.DAL
             }
             catch (Exception feil)
             {
+                db.LoggFeilmeldinger(feil.ToString());
                 return false;
             }
         }
@@ -284,12 +299,14 @@ namespace HyperWing.DAL
             var db = new FlyContext();
             try
             {
+                db.Database.Log = (s) => { db.LoggEndringer(s); };
                 db.Reiser.Add(nyReise);
                 db.SaveChanges();
                 return true;
             }
             catch (Exception feil)
             {
+                db.LoggFeilmeldinger(feil.ToString());
                 return false;
             }
         }
@@ -298,6 +315,7 @@ namespace HyperWing.DAL
             var db = new FlyContext();
             try
             {
+                db.Database.Log = (s) => { db.LoggEndringer(s); };
                 Reiser endreReise = db.Reiser.FirstOrDefault(k => k.RId == id);
                 endreReise.ByFra = innReise.ByFra;
                 endreReise.ByTil = innReise.ByTil;
@@ -312,8 +330,9 @@ namespace HyperWing.DAL
                 db.SaveChanges();
                 return true;
             }
-            catch
+            catch(Exception feil)
             {
+                db.LoggFeilmeldinger(feil.ToString());
                 return false;
             }
         }
@@ -322,6 +341,7 @@ namespace HyperWing.DAL
             var db = new FlyContext();
             try
             {
+                db.Database.Log = (s) => { db.LoggEndringer(s); };
                 Reiser slettReise = db.Reiser.FirstOrDefault(k => k.RId == slettId);
                 db.Reiser.Remove(slettReise);
                 db.SaveChanges();
@@ -329,6 +349,7 @@ namespace HyperWing.DAL
             }
             catch (Exception feil)
             {
+                db.LoggFeilmeldinger(feil.ToString());
                 return false;
             }
         }
@@ -376,12 +397,14 @@ namespace HyperWing.DAL
             var db = new FlyContext();
             try
             {
+                db.Database.Log = (s) => { db.LoggEndringer(s); };
                 db.Flyplasser.Add(nyFlyplass);
                 db.SaveChanges();
                 return true;
             }
             catch (Exception feil)
             {
+                db.LoggFeilmeldinger(feil.ToString());
                 return false;
             }
 
@@ -391,14 +414,16 @@ namespace HyperWing.DAL
             var db = new FlyContext();
             try
             {
+                db.Database.Log = (s) => { db.LoggEndringer(s); };
                 Flyplasser endreFlyplass = db.Flyplasser.FirstOrDefault(k => k.FId == id);
                 endreFlyplass.Navn = innFlyplass.Navn;
 
                 db.SaveChanges();
                 return true;
             }
-            catch
+            catch (Exception feil)
             {
+                db.LoggFeilmeldinger(feil.ToString());
                 return false;
             }
         }
@@ -407,6 +432,7 @@ namespace HyperWing.DAL
             var db = new FlyContext();
             try
             {
+                db.Database.Log = (s) => { db.LoggEndringer(s); };
                 Flyplasser slettFlyplass = db.Flyplasser.FirstOrDefault(k => k.FId == slettId);
                 db.Flyplasser.Remove(slettFlyplass);
                 db.SaveChanges();
@@ -414,6 +440,7 @@ namespace HyperWing.DAL
             }
             catch (Exception feil)
             {
+                db.LoggFeilmeldinger(feil.ToString());
                 return false;
             }
         }

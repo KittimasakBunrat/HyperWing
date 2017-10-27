@@ -1,0 +1,90 @@
+﻿@model HyperWing.Model.Reiser
+
+@{
+    ViewBag.Title = "detaljerReise";
+}
+
+<h2>detaljerReise</h2>
+
+<div>
+    <h4>Reiser</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ByFra)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ByFra)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ByTil)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ByTil)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Flyplass)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Flyplass)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Avgangstid)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Avgangstid)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ankomstid)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ankomstid)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Reisetid)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Reisetid)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pris)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pris)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Informasjon)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Informasjon)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FId)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.RId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
