@@ -1,0 +1,65 @@
+﻿body {
+
+    background-image:url(/Images/adminWallpaper.jpg);
+        background-size:100%;
+}
+
+h1 {
+    color: whitesmoke;
+    font-family: "Verdana";
+    font-size: 50px;
+    text-align:center
+}
+
+h2 {
+    color: whitesmoke;
+    font-family: "Verdana";
+    font-size: 28px;
+   
+}
+
+.mintextStyle {
+
+    color: black;
+    font-family: "Verdana";
+    font-size: 20px;
+    margin-left:25%;
+    
+}
+
+.containerStyle {
+
+    background-color:whitesmoke;
+    border-radius:3px; 
+     
+}
+.containerStyle2 {
+    background-color: whitesmoke;
+    border-radius: 3px;
+    padding:25px;
+}
+
+.optionsStyle {
+    background-color: whitesmoke;
+    border-radius: 3px;
+    height:auto;
+    background-color: rgba(255,255,255,0.95);
+    
+}
+
+.formStyle {
+    align-content: center;
+    margin-top:1em;
+    margin-left:25%;
+    
+}
+.listStyle {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    margin-left: 25%;
+}
+
+.refStyle {
+    margin-top:1em;
+}
+

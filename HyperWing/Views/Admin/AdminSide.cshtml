@@ -1,16 +1,26 @@
 ﻿@{
     ViewBag.Title = "AdminSide";
 }
+<header>
+    <link rel="stylesheet" href="~/Content/styles.css">
+</header>
 
-<h2>Administrer Reiser, Kunder, Billetter</h2>
-
-@Html.ActionLink("Logg ut", "LoggUt", new { tom = "" }, new { @class = "btn btn-danger" })
-
-<br />
-<br />
-<br />
-
-<a href="/Admin/ListeFlyplasser" class="btn btn-primary">Flyplass Liste</a>
-<a href="/Admin/ListeReiser" class="btn btn-primary">Reise Liste</a>
-<a href="/Admin/ListeKunder" class="btn btn-primary">Kunde Liste</a>
-<a href="/Admin/ListeBilletter" class="btn btn-primary">Billett Liste</a>
+<body>
+    <h1>Admin-HyperWing</h1>
+    <h2>Hovedmeny</h2>
+    <hr />
+  
+    <section class="container-fluid optionsStyle">
+        <p class="mintextStyle">Administrer Flyplasser, Reiser, Kunder, Billetter</p>
+        <div class="listStyle">
+        <a href="/Admin/ListeFlyplasser" class="btn btn-primary refStyle">Flyplass Liste</a>
+        <a href="/Admin/ListeReiser" class="btn btn-primary refStyle">Reise Liste</a>
+        <a href="/Admin/ListeKunder" class="btn btn-primary refStyle">Kunde Liste</a>
+        <a href="/Admin/ListeBilletter" class="btn btn-primary refStyle">Billett Liste</a>
+        </div>
+       
+    </section>
+    <div>
+        @Html.ActionLink("Logg ut", "LoggUt", new { tom = "" }, new { @class = "btn btn-danger" })
+    </div>
+    </body>
