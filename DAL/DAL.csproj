@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdminRepository.cs" />
+    <Compile Include="AdminRepositoryStub.cs" />
     <Compile Include="DB.cs" />
     <Compile Include="DbContext.cs" />
     <Compile Include="DbInit.cs" />
