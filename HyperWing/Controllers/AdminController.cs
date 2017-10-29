@@ -68,35 +68,33 @@ namespace HyperWing.Controllers
             return RedirectToAction("Login");
         }
 
+
         public ActionResult ListeKunder()
         {
             List<Kunde> alleKunder = _adminBLL.hentAlleKunder();
             return View(alleKunder);
         }
-
         public ActionResult ListeFlyplasser()
         {
             List<Flyplasser> alleFlyplasser = _adminBLL.hentAlleFlyplasser();
             return View(alleFlyplasser);
         }
-
         public ActionResult ListeBilletter()
         {
             List<Billett> alleBilletter = _adminBLL.hentAlleBilletter();
             return View(alleBilletter);
         }
-
         public ActionResult ListeReiser()
         {
             List<Reiser> alleReiser = _adminBLL.hentAlleReiser();
             return View(alleReiser);
         }
 
+
         public ActionResult RegistrerKunde()
         {
             return View();
         }
-
         [HttpPost]
         public ActionResult RegistrerKunde(Kunde innKunde)
         {
@@ -110,12 +108,10 @@ namespace HyperWing.Controllers
             }
             return View();
         }
-
         public ActionResult RegistrerFlyplass()
         {
             return View();
         }
-
         [HttpPost]
         public ActionResult RegistrerFlyplass(Flyplasser innFlyplass)
         {
@@ -129,12 +125,10 @@ namespace HyperWing.Controllers
             }
             return View();
         }
-
         public ActionResult RegistrerBillett()
         {
             return View();
         }
-
         [HttpPost]
         public ActionResult RegistrerBillett(Billett innBillett)
         {
@@ -148,12 +142,10 @@ namespace HyperWing.Controllers
             }
             return View();
         }
-
         public ActionResult RegistrerReise()
         {
             return View();
         }
-
         [HttpPost]
         public ActionResult RegistrerReise(Reiser innReise)
         {
@@ -168,12 +160,12 @@ namespace HyperWing.Controllers
             return View();
         }
 
+
         public ActionResult EndreKunde(int id)
         {
             Kunde enKunde = _adminBLL.hentEnKunde(id);
             return View(enKunde);
         }
-
         [HttpPost]
         public ActionResult EndreKunde(int id, Kunde endreKunde)
         {
@@ -184,13 +176,11 @@ namespace HyperWing.Controllers
             }
             return View();
         }
-
         public ActionResult EndreFlyplass(int id)
         {
             Flyplasser enFlyplass = _adminBLL.hentEnFlyplass(id);
             return View(enFlyplass);
         }
-
         [HttpPost]
         public ActionResult EndreFlyplass(int id, Flyplasser endreFlyplass)
         {
@@ -201,13 +191,11 @@ namespace HyperWing.Controllers
             }
             return View();
         }
-
         public ActionResult EndreBillett(int id)
         {
             Billett enBillett = _adminBLL.hentEnBillett(id);
             return View(enBillett);
         }
-
         [HttpPost]
         public ActionResult EndreBillett(int id, Billett endreBillett)
         {
@@ -218,13 +206,11 @@ namespace HyperWing.Controllers
             }
             return View();
         }
-
         public ActionResult EndreReise(int id)
         {
             Reiser enReise = _adminBLL.hentEnReise(id);
             return View(enReise);
         }
-
         [HttpPost]
         public ActionResult EndreReise(int id, Reiser endreReise)
         {
@@ -235,5 +221,9 @@ namespace HyperWing.Controllers
             }
             return View();
         }
+
+        /*
+         * Mangler Detaljer og Slett
+         */
     }
 }
