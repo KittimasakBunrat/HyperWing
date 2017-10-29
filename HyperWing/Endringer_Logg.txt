@@ -93,3 +93,43 @@ SELECT TOP (1)
 -- Completed in 14 ms with result: SqlDataReader
 
 Closed connection at 10/27/2017 5:18:18 PM +02:00
+Opened connection at 10/29/2017 4:50:04 PM +01:00
+SELECT TOP (1) 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[personNr] AS [personNr], 
+    [Extent1].[navn] AS [navn], 
+    [Extent1].[epost] AS [epost], 
+    [Extent1].[telefon] AS [telefon]
+    FROM [dbo].[Kunde] AS [Extent1]
+    WHERE [Extent1].[Id] = @p__linq__0
+-- p__linq__0: '1' (Type = Int32, IsNullable = false)
+-- Executing at 10/29/2017 4:50:04 PM +01:00
+-- Completed in 7 ms with result: SqlDataReader
+
+Closed connection at 10/29/2017 4:50:04 PM +01:00
+Opened connection at 10/29/2017 4:50:04 PM +01:00
+Started transaction at 10/29/2017 4:50:04 PM +01:00
+DELETE [dbo].[Kunde]
+WHERE ([Id] = @0)
+-- @0: '1' (Type = Int32)
+-- Executing at 10/29/2017 4:50:04 PM +01:00
+-- Completed in 13 ms with result: 1
+
+Committed transaction at 10/29/2017 4:50:04 PM +01:00
+Closed connection at 10/29/2017 4:50:04 PM +01:00
+Opened connection at 10/29/2017 4:50:13 PM +01:00
+Started transaction at 10/29/2017 4:50:13 PM +01:00
+INSERT [dbo].[Kunde]([personNr], [navn], [epost], [telefon])
+VALUES (@0, @1, @2, @3)
+SELECT [Id]
+FROM [dbo].[Kunde]
+WHERE @@ROWCOUNT > 0 AND [Id] = scope_identity()
+-- @0: '2006' (Type = String, Size = -1)
+-- @1: 'Kittimasak Bunrat' (Type = String, Size = -1)
+-- @2: 'kittimasak.bunrat@gmail.com' (Type = String, Size = -1)
+-- @3: '45809225' (Type = Int32)
+-- Executing at 10/29/2017 4:50:13 PM +01:00
+-- Completed in 8 ms with result: SqlDataReader
+
+Committed transaction at 10/29/2017 4:50:13 PM +01:00
+Closed connection at 10/29/2017 4:50:13 PM +01:00
