@@ -10,7 +10,6 @@ namespace HyperWing.DAL
     public class DB
     {
 
-        //Från gammal DB
         public List<FlyReise> listAlleReiser()
         {
             var db = new FlyContext();

@@ -21,8 +21,6 @@ namespace HyperWing.Controllers
             _adminBLL = stub;
         }
 
-       // BLL.AdminLogikk bll = new BLL.AdminLogikk();
-
         public ActionResult Login()
         {
             if (Session["LoggetInn"] == null)

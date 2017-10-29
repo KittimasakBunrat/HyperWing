@@ -6,6 +6,7 @@ using System.Security.Cryptography;
 using System.Threading.Tasks;
 using HyperWing.Model;
 using System.IO;
+using Model;
 
 namespace HyperWing.DAL
 {
@@ -29,12 +30,6 @@ namespace HyperWing.DAL
                 }
             }
         }
-
-      /*  public bool adminDB(Admin admin)
-        {
-            var db = new DB();
-            return db.adminDB(admin);
-        }*/
 
         public byte[] lagHash(String hash)
         {
